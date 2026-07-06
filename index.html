@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D House Model Designer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="main-header">
+    <a class="logo" href="#home">
+      <span class="logo-icon">3D</span>
+      <span>House Model</span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+    <nav class="nav" id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#models">Ready Models</a>
+      <a href="#customize">Customize</a>
+      <a href="#request">Request Model</a>
+      <a href="#downloads">Download</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn ghost" data-open="loginModal">Login</button>
+      <button class="btn primary" data-open="signupModal">Sign Up</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">Smart 3D house planning website</p>
+        <h1>Design, customize and download your own 3D house model.</h1>
+        <p class="hero-text">
+          Choose a readymade model, change floors, roof, rooms, doors, windows, colors and furniture, or fill a requirement form so the website can generate a model based on your details.
+        </p>
+        <div class="hero-buttons">
+          <a href="#models" class="btn primary big">Choose Model</a>
+          <a href="#request" class="btn white big">Fill Requirement Form</a>
+        </div>
+        <div class="stats">
+          <div><strong>4+</strong><span>House styles</span></div>
+          <div><strong>25+</strong><span>Custom options</span></div>
+          <div><strong>OBJ/JSON</strong><span>Downloads</span></div>
+        </div>
+      </div>
+
+      <div class="viewer-card">
+        <div class="viewer-top">
+          <span></span><span></span><span></span>
+          <p>Live 3D Preview</p>
+        </div>
+        <div id="viewer"></div>
+        <div class="viewer-controls">
+          <button class="mini-btn" id="rotateBtn">Pause Rotate</button>
+          <button class="mini-btn" id="resetCameraBtn">Reset View</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <div class="section-title">
+        <p class="eyebrow">Ready model selection</p>
+        <h2>Select a readymade house model</h2>
+        <p>Start quickly with a simple, family, duplex or luxury model. After selecting, you can customize the complete design.</p>
+      </div>
+
+      <div class="model-grid">
+        <article class="model-card active" data-model="simple">
+          <div class="model-thumb simple-thumb"></div>
+          <h3>Simple House</h3>
+          <p>Best for low budget and small family.</p>
+          <button class="btn small select-model">Use This Model</button>
+        </article>
+
+        <article class="model-card" data-model="family">
+          <div class="model-thumb family-thumb"></div>
+          <h3>Family House</h3>
+          <p>Good design with more rooms and parking.</p>
+          <button class="btn small select-model">Use This Model</button>
+        </article>
+
+        <article class="model-card" data-model="duplex">
+          <div class="model-thumb duplex-thumb"></div>
+          <h3>Duplex Model</h3>
+          <p>Two floor modern design with balcony.</p>
+          <button class="btn small select-model">Use This Model</button>
+        </article>
+
+        <article class="model-card" data-model="luxury">
+          <div class="model-thumb luxury-thumb"></div>
+          <h3>Luxury Villa</h3>
+          <p>Premium look with large size and garden.</p>
+          <button class="btn small select-model">Use This Model</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section custom-section" id="customize">
+      <div class="section-title">
+        <p class="eyebrow">Customization panel</p>
+        <h2>Customize your selected 3D model</h2>
+        <p>Change the values and the 3D preview updates automatically.</p>
+      </div>
+
+      <div class="custom-layout">
+        <form class="custom-form" id="customForm">
+          <div class="form-group">
+            <label for="budget">Budget</label>
+            <select id="budget">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+              <option value="luxury">Luxury</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="material">Material Quality</label>
+            <select id="material">
+              <option value="basic">Low material</option>
+              <option value="good" selected>Good material</option>
+              <option value="premium">Premium material</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="floors">Number of Floors</label>
+            <input type="number" id="floors" min="1" max="4" value="2" />
+          </div>
+
+          <div class="form-group">
+            <label for="roof">Roof Style</label>
+            <select id="roof">
+              <option value="flat">Flat Roof</option>
+              <option value="gable" selected>Gable Roof</option>
+              <option value="hip">Hip Roof</option>
+              <option value="complex">Complex Roof</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bedrooms">Bedrooms</label>
+            <input type="number" id="bedrooms" min="1" max="8" value="3" />
+          </div>
+
+          <div class="form-group">
+            <label for="bathrooms">Bathrooms</label>
+            <input type="number" id="bathrooms" min="1" max="6" value="2" />
+          </div>
+
+          <div class="form-group">
+            <label for="doors">Doors</label>
+            <input type="number" id="doors" min="1" max="8" value="4" />
+          </div>
+
+          <div class="form-group">
+            <label for="windows">Windows</label>
+            <input type="number" id="windows" min="1" max="12" value="6" />
+          </div>
+
+          <div class="form-group">
+            <label for="wallColor">Wall Color</label>
+            <input type="color" id="wallColor" value="#f8fafc" />
+          </div>
+
+          <div class="form-group">
+            <label for="roofColor">Roof Color</label>
+            <input type="color" id="roofColor" value="#ef4444" />
+          </div>
+
+          <div class="form-group">
+            <label for="doorColor">Door Color</label>
+            <input type="color" id="doorColor" value="#8b5a2b" />
+          </div>
+
+          <div class="form-group check-line">
+            <input type="checkbox" id="parking" checked />
+            <label for="parking">Add Parking Section</label>
+          </div>
+
+          <div class="form-group check-line">
+            <input type="checkbox" id="garden" checked />
+            <label for="garden">Add Garden Area</label>
+          </div>
+
+          <div class="form-group check-line">
+            <input type="checkbox" id="furniture" checked />
+            <label for="furniture">Add Fan, AC, TV, Washing Machine</label>
+          </div>
+        </form>
+
+        <div class="summary-card">
+          <h3>Current Model Details</h3>
+          <div id="modelSummary"></div>
+          <div class="download-actions">
+            <button class="btn primary" id="downloadJsonBtn">Download Design JSON</button>
+            <button class="btn dark" id="downloadObjBtn">Download 3D OBJ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="request">
+      <div class="section-title">
+        <p class="eyebrow">Form based model generation</p>
+        <h2>Fill house requirement form</h2>
+        <p>Enter your full requirement. The website will create a 3D model preview based on your form data.</p>
+      </div>
+
+      <form class="request-form" id="requestForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter email" required />
+        </div>
+        <div class="form-group">
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" placeholder="Enter mobile number" required />
+        </div>
+        <div class="form-group">
+          <label for="plotSize">Plot Size</label>
+          <input type="text" id="plotSize" placeholder="Example: 30x40 feet" required />
+        </div>
+        <div class="form-group">
+          <label for="reqFloors">Floors</label>
+          <input type="number" id="reqFloors" min="1" max="4" value="1" />
+        </div>
+        <div class="form-group">
+          <label for="reqBedrooms">Bedrooms</label>
+          <input type="number" id="reqBedrooms" min="1" max="8" value="2" />
+        </div>
+        <div class="form-group">
+          <label for="reqBathrooms">Bathrooms</label>
+          <input type="number" id="reqBathrooms" min="1" max="6" value="1" />
+        </div>
+        <div class="form-group">
+          <label for="reqBudget">Budget Type</label>
+          <select id="reqBudget">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="luxury">Luxury</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="extraDetails">Extra Details</label>
+          <textarea id="extraDetails" rows="4" placeholder="Example: add balcony, garden, parking, wall color, kitchen design..."></textarea>
+        </div>
+        <button class="btn primary full-btn" type="submit">Generate Model From Form</button>
+      </form>
+    </section>
+
+    <section class="section download-section" id="downloads">
+      <div class="section-title">
+        <p class="eyebrow">File manager download</p>
+        <h2>Download your house model</h2>
+        <p>Your browser downloads the selected design file into your device file manager/download folder.</p>
+      </div>
+
+      <div class="download-grid">
+        <div class="download-box">
+          <h3>JSON Design File</h3>
+          <p>Best for saving all selected options and form data.</p>
+          <button class="btn primary" id="downloadJsonBtn2">Download JSON</button>
+        </div>
+        <div class="download-box">
+          <h3>OBJ 3D File</h3>
+          <p>Basic 3D model file that can be opened in many 3D tools.</p>
+          <button class="btn dark" id="downloadObjBtn2">Download OBJ</button>
+        </div>
+        <div class="download-box">
+          <h3>Project Note</h3>
+          <p>Download a simple text file explaining the selected house model.</p>
+          <button class="btn light" id="downloadNoteBtn">Download Note</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 3D House Model Designer. Made for Computer Engineering project.</p>
+  </footer>
+
+  <div class="modal" id="loginModal">
+    <div class="modal-box">
+      <button class="close-modal" data-close="loginModal">×</button>
+      <h2>Login</h2>
+      <p class="modal-info">Login data is saved in browser local storage for demo purpose.</p>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button class="btn primary full-btn" type="submit">Login</button>
+      </form>
+      <p class="switch-text">Don't have an account? <button data-switch="signupModal">Sign up</button></p>
+    </div>
+  </div>
+
+  <div class="modal" id="signupModal">
+    <div class="modal-box">
+      <button class="close-modal" data-close="signupModal">×</button>
+      <h2>Create Account</h2>
+      <p class="modal-info">Create account to save your selected model in this browser.</p>
+      <form id="signupForm">
+        <input type="text" id="signupName" placeholder="Full Name" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input type="tel" id="signupMobile" placeholder="Mobile Number" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <button class="btn primary full-btn" type="submit">Sign Up</button>
+      </form>
+      <p class="switch-text">Already have an account? <button data-switch="loginModal">Login</button></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
